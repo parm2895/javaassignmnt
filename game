@@ -1,0 +1,71 @@
+//Name: parminder
+//Student ID: 201806551
+//Class IN2203 Section Number: G1
+//date 05042021
+//Assignment 1: The Gambling Game
+
+import java.util.*;
+
+public class MainApplication{
+    public static void main(String[] args){
+        Casino c=new Casino();
+        c.OrganizeNewGame();
+    }
+}
+
+class Casino{
+    Player p1=new Player();
+    Game g1=new Game();
+
+    String userAnswer;
+    Scanner sc=new Scanner(System.in);
+
+    public void OrganizeNewGame(){
+        System.out.println("Welcome to game Casino: Will you like to play?(y/n)");
+
+        userAnswer= sc.nextLine();
+
+        if(userAnswer.equals("y")){
+            System.out.println("let's get started");
+            g1.PlayGame();
+            p1.runGame();
+
+        }else{
+            System.out.println("see you");
+        }
+    }
+}
+class Game{
+    Random rand=new Random();
+    int ComputerGuess=-1;
+
+    public void PlayGame(){
+        System.out.println("select a number from 1 to 100");
+        System.out.println("And I will guess a game");
+        System.out.println("If your guess will be from 20 of my guess: then it is the chance for you to win. otherwise I will win");
+
+        ComputerGuess=ComputerGuess();
+        System.out.println("Computer Guess is" + ComputerGuess);
+
+}
+
+public int ComputerGuess(){
+    int programGuess=rand.nextInt(100);
+    return programGuess;
+    }
+}
+class Player enlarges Game{
+   //Get Input from User
+   public void runGame(){
+       // Get User Input
+       Scanner sc = new Scanner(System.in);
+       System.out.println("parm win! ");
+       int userInput = sc.nextInt();
+       // Check the user input with the ComputerGuess
+       if(userInput >= (ComputerGuess - 10) && userInput<= (ComputerGuess + 10)){
+            System.out.println("You Won!");
+       } else{
+           System.out.println("Computer Won!");
+       }
+   }
+}
